@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
-
 usuarios = [
     {"id": 1, "nome": "Usuario1", "cpf": "12345", "age": "10"},
     {"id": 2, "nome": "Usuario2", "cpf": "123456", "age": "11"},
@@ -27,7 +26,6 @@ def cadastrar_usuario():
     else:
         return jsonify({"erro": "Dados inválidos"}), 400 
 
-
 @app.route('/alterarusuario/<int:id>', methods=['PUT'])
 def atualizar_usuario(id):
     dados = request.get_json()
@@ -40,7 +38,6 @@ def atualizar_usuario(id):
 
     return jsonify({"erro": "Usuário não encontrado"}), 404
 
-
 @app.route('/deletarusuarios/<int:id>', methods=['DELETE'])
 def excluir_usuario(id):
     for usuario in usuarios:
@@ -50,7 +47,6 @@ def excluir_usuario(id):
 
     return jsonify({"erro": "Usuário não encontrado"}), 404
 
-
 @app.route('/usuarios/<int:id>', methods=['GET'])
 def obter_usuario_por_id(id):
     for usuario in usuarios:
@@ -58,7 +54,6 @@ def obter_usuario_por_id(id):
             return jsonify({"usuario": usuario}), 200
 
     return jsonify({"erro": "Usuário não encontrado"}), 404
-
 
 @app.route('/atualizarusuario/<int:id>', methods=['PATCH'])
 def atualizar_dados_usuario(id):
@@ -72,7 +67,6 @@ def atualizar_dados_usuario(id):
             return jsonify({"mensagem": "Dados do usuário atualizados com sucesso!"}), 200
 
     return jsonify({"erro": "Usuário não encontrado"}), 404
-
 
 @app.route('/usuarios', methods=['GET'])
 def obter_usuarios():
